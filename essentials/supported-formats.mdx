@@ -1,0 +1,45 @@
+---
+title: "Supported Formats"
+description: "Compatible 3D models and texture formats"
+icon: "file-lines"
+---
+
+Cortex Labs supports a wide range of asset formats used in the FiveM and GTA V modding community.
+
+## 3D Models
+
+### Vehicle Formats
+- **.yft** (Fragment): Standard GTA V vehicle model format. Cortex Labs converts these internally to renderable geometry.
+- **.dff** (RenderWare): Older GTA format, supported for legacy compatibility.
+- **.obj** (Wavefront): **Not Supported**.
+  <Warning>
+    OBJ files are intentionally unsupported out of respect for vehicle developers and to prevent unauthorized ripping/editing of locked assets.
+  </Warning>
+
+### Character/EUP Formats
+- **.ydd** (Drawable Dictionary): Supported for EUP (Emergency Uniforms Pack) clothing previews.
+  - Automatically loads the highest detail level (High/Med/Low).
+  - Supports 16-bit vertex formats common in newer assets.
+
+### Cache Formats
+- **.clmesh**: Cortex Labs' internal mesh cache format. Speeds up loading for previously opened models.
+
+## Textures
+
+Cortex Labs supports mostly all standard image formats, plus direct support for modding formats.
+
+| Format | Notes |
+| :--- | :--- |
+| **.png** | Recommended for high quality and transparency. |
+| **.jpg / .jpeg** | Standard compressed images. |
+| **.dds** | DirectDraw Surface. Native texture format for GTA V. Supports DXT1, DXT3, DXT5 compression. |
+| **.psd** | Adobe Photoshop Document. **Includes 16-bit support.** |
+| **.tga** | Truevision TGA. |
+| **.tiff** | Tagged Image File Format. |
+| **.webp** | Modern web format. |
+
+### 16-bit PSD Support
+Cortex Labs includes a specialized decoder for **16-bit PSD files**, which are common in high-quality livery templates.
+- Automatically converts 16-bit data to 8-bit for display.
+- Supports RAW, RLE (PackBits), and ZIP compression modes.
+- Prevents the "psychedelic" or "rainbow" artifacts seen in other viewers when loading 16-bit assets.

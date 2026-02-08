@@ -1,0 +1,40 @@
+---
+title: "Troubleshooting"
+description: "Common issues and solutions"
+icon: "wrench"
+---
+
+## Model Issues
+
+### "Model failed to load"
+- **Cause**: The file might be corrupted or in an unsupported format version.
+- **Fix**: Try opening the file in CodeWalker to verify it is valid. If it opens there but not in Cortex, please report a bug.
+
+### "Rainbow/Psychedelic Colors"
+- **Cause**: This usually happens when loading 16-bit PSDs in viewers that don't support them, or when vertex colors are incorrectly rendered.
+- **Fix**:
+  - **PSDs**: Cortex Labs v3+ supports 16-bit PSDs natively. Ensure you are on the latest version.
+  - **Models**: If a `.ydd` model looks tinted (magenta/yellow), Cortex Labs automatically disables vertex colors in EUP mode. Try reloading the model.
+
+### "OBJ files not working"
+- **Cause**: OBJ support is intentionally disabled.
+- **Fix**: Use `.yft` or `.ydd` files directly from the game or mod archive.
+
+## Texture Issues
+
+### "Invalid Signature" error on save
+- **Cause**: When saving a large PSD in Photoshop, the file might be briefly empty (0 bytes) or locked while writing.
+- **Fix**: Cortex Labs includes a retry mechanism. If you see this error, wait a moment; it usually resolves itself on the next retry attempt (within milliseconds).
+
+### Texture not updating
+- **Cause**: The file watcher might have lost the handle.
+- **Fix**: Re-select the texture file in the sidebar to re-attach the watcher.
+
+## Performance
+
+### Slow rendering / lag
+- **Cause**: High-poly models (500k+ polygons) or 4K/8K uncompressed textures.
+- **Fix**:
+  - Close other GPU-heavy applications.
+  - Resize textures to 2K for preview purposes if 4K is causing stutter.
+  - Use `.clmesh` cache files if available (generated automatically after first load).

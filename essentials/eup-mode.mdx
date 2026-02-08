@@ -1,0 +1,26 @@
+---
+title: "EUP Mode"
+description: "Previewing clothing and uniforms with .ydd support"
+icon: "shirt"
+---
+
+**EUP Mode** allows you to load character clothing assets (`.ydd` files) and preview textures on them. This is essential for creating custom uniforms, vests, and gear for FiveM servers.
+
+## How to use
+
+1.  **Select EUP Mode**: In the sidebar, ensure the Texture Mode is set to **EUP** (or "Clothing").
+2.  **Load a Model**: Drag and drop a `.ydd` file.
+    - Example: `mp_m_freemode_01_mp_m_janitor_01.ydd`
+3.  **Load a Texture**: Drag and drop your texture file (`.png`, `.psd`, etc.).
+4.  **Targeting**: Cortex Labs will attempt to apply the texture to the main mesh.
+    - If the model has multiple sub-meshes (e.g., badges, body, gear), use the **Texture Target** dropdown to select specifically which mesh the texture should apply to.
+
+## Features
+
+- **Vertex Color Handling**: Automatically disables vertex color rendering for `.ydd` models to prevent unwanted tinting (often seen as magenta/yellow gradients on raw rips).
+- **Auto-Orientation**: Corrects the up-axis for character models so they stand upright.
+- **High Detail**: Automatically selects the highest detail geometry (High/Very High) from the dictionary.
+
+<Tip>
+  For best results with EUP, use 16-bit PSD templates if available, as they provide smoother gradients for normal maps and fabric details.
+</Tip>

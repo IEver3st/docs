@@ -1,0 +1,52 @@
+---
+title: "Livery Workflow"
+description: "Best practices for creating liveries with Cortex Labs"
+icon: "paintbrush"
+---
+
+This guide outlines the recommended workflow for creating vehicle liveries using Cortex Labs.
+
+## Setup
+
+1.  **Prepare your Workspace**:
+    - Open your image editor (Photoshop, Paint.NET, GIMP).
+    - Open Cortex Labs.
+    - Arrange your windows so you can see both simultaneously (or use a second monitor).
+
+2.  **Load Assets**:
+    - Drag your vehicle model (`.yft`) into Cortex Labs.
+    - Open the livery template (`.png` or `.psd`) in your image editor.
+    - Drag the same texture file into Cortex Labs' "Texture" slot.
+
+## Real-Time Editing
+
+Cortex Labs watches the file system for changes to the loaded texture.
+
+1.  **Make a Change**: Draw a line, place a logo, or change a color in your image editor.
+2.  **Save (Ctrl+S)**: Overwrite the file on disk.
+3.  **Instant Preview**: Cortex Labs will detect the change and reload the texture on the 3D model instantly (usually <100ms).
+
+<Tip>
+  **Pro Tip**: If using Photoshop, you can save directly to `.psd`. Cortex Labs supports reading flattened PSD composites, so you don't need to export to PNG every time you want to preview.
+</Tip>
+
+## Material Targeting
+
+When loading a vehicle, Cortex Labs tries to guess which materials are "paint" or "liveries".
+
+- **Livery Mode**:
+  - Automatically targets materials named `carpaint`, `sign_1`, `livery`, etc.
+  - Keeps windows, tires, and chrome unchanged.
+  - Best for standard livery work.
+
+- **Everything Mode**:
+  - Applies the texture to **every** mesh in the model.
+  - Useful for debugging UV maps or if the auto-detection misses a specific part.
+
+## Exporting
+
+Once you are happy with your livery:
+
+1.  **Final Save**: Save your project file (`.psd`).
+2.  **Export**: Export the final texture as `.dds` (DXT5 or DXT1) or `.png` for use in OpenIV/CodeWalker.
+    - *Note: Cortex Labs is a previewer, not a .ytd editor. You still need OpenIV or Texture Toolbox to import the texture into the game files.*

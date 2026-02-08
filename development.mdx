@@ -1,94 +1,77 @@
 ---
-title: 'Development'
-description: 'Preview changes locally to update your docs'
+title: "Development"
+description: "How to build and contribute to Cortex Labs"
+icon: "code"
 ---
 
-<Info>
-  **Prerequisites**:
-  - Node.js version 19 or higher
-  - A docs repository with a `docs.json` file
-</Info>
+Cortex Labs is built with **Tauri v2**, **React**, **Vite**, and **Three.js**.
 
-Follow these steps to install and run Mintlify on your operating system.
+## Prerequisites
 
-<Steps>
-<Step title="Install the Mintlify CLI">
+- **Bun**: Required for package management and scripts.
+- **Rust**: Required for Tauri backend.
+- **Node.js**: Required for some build tools (though Bun handles most).
+- **C++ Build Tools**: Required for native modules on Windows (Visual Studio Build Tools).
 
-```bash
-npm i -g mint
-```
-</Step>
+## Setup
 
-<Step title="Preview locally">
+1.  **Clone the repository**:
+    ```bash
+    git clone https://github.com/IEver3st/cortex-labs.git
+    cd cortex-labs
+    ```
 
-Navigate to your docs directory where your `docs.json` file is located, and run the following command:
+2.  **Install dependencies**:
+    ```bash
+    bun install
+    ```
 
-```bash
-mint dev
-```
+## Running Locally
 
-A local preview of your documentation will be available at `http://localhost:3000`.
-
-</Step>
-</Steps>
-
-## Custom ports
-
-By default, Mintlify uses port 3000. You can customize the port Mintlify runs on by using the `--port` flag. For example, to run Mintlify on port 3333, use this command:
+To run the full desktop application in development mode:
 
 ```bash
-mint dev --port 3333
+bun run tauri dev
 ```
 
-If you attempt to run Mintlify on a port that's already in use, it will use the next available port:
+This will:
+1.  Start the Vite frontend dev server (localhost:1420).
+2.  Compile the Rust backend.
+3.  Launch the Tauri application window.
 
-```md
-Port 3000 is already in use. Trying 3001 instead.
-```
+### UI-Only Mode
 
-## Mintlify versions
-
-Please note that each CLI release is associated with a specific version of Mintlify. If your local preview does not align with the production version, please update the CLI:
+If you only want to work on the React UI (and don't need native file system features):
 
 ```bash
-npm mint update
+bun run dev
 ```
 
-## Validating links
+<Note>
+  In UI-only mode, features like file loading, saving, and native dialogs will not work or will use mock data.
+</Note>
 
-The CLI can assist with validating links in your documentation. To identify any broken links, use the following command:
+## Building
+
+To create a production build (installer/executable):
 
 ```bash
-mint broken-links
+bun run tauri build
 ```
 
-## Deployment
+The output will be in `src-tauri/target/release/bundle/`.
 
-If the deployment is successful, you should see the following:
+## Project Structure
 
-<Frame>
-  <img src="/images/checks-passed.png" alt="Screenshot of a deployment confirmation message that says All checks have passed." style={{ borderRadius: '0.5rem' }} />
-</Frame>
+- `src/`: React frontend code.
+  - `components/Viewer.jsx`: The core Three.js renderer and file parsers.
+  - `lib/`: Utility libraries (YFT parser, helpers).
+- `src-tauri/`: Rust backend code.
+  - `src/lib.rs`: Main Rust logic (file watchers, commands).
+- `tools/`: Sidecar executables (e.g., CodeWalker bridge).
 
-## Code formatting
+## Contribution Guidelines
 
-We suggest using extensions on your IDE to recognize and format MDX. If you're a VSCode user, consider the [MDX VSCode extension](https://marketplace.visualstudio.com/items?itemName=unifiedjs.vscode-mdx) for syntax highlighting, and [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) for code formatting.
-
-## Troubleshooting
-
-<AccordionGroup>
-  <Accordion title='Error: Could not load the "sharp" module using the darwin-arm64 runtime'>
-
-    This may be due to an outdated version of node. Try the following:
-    1. Remove the currently-installed version of the CLI: `npm remove -g mint`
-    2. Upgrade to Node v19 or higher.
-    3. Reinstall the CLI: `npm i -g mint`
-  </Accordion>
-
-  <Accordion title="Issue: Encountering an unknown error">
-  
-    Solution: Go to the root of your device and delete the `~/.mintlify` folder. Then run `mint dev` again.
-  </Accordion>
-</AccordionGroup>
-
-Curious about what changed in the latest CLI version? Check out the [CLI changelog](https://www.npmjs.com/package/mintlify?activeTab=versions).
+- **Code Style**: We use Prettier and ESLint. Run `bun run lint` before committing.
+- **File Formats**: If adding support for a new format, please include a sample file in your PR description.
+- **Performance**: Avoid blocking the main thread. Use Web Workers for heavy parsing (e.g., large geometry).
