@@ -1,12 +1,7 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "mint",
+  "theme": "willow",
   "name": "Cortex Labs",
-  "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
-  },
-  "favicon": "/favicon.svg",
   "colors": {
     "primary": "#3B82F6",
     "light": "#60A5FA",
@@ -53,16 +48,15 @@
     }
   },
   "navbar": {
-    "links": [
-      {
-        "label": "Discord",
-        "href": "https://discord.gg/your-discord-link"
-      }
-    ]
+    "links": []
   },
   "footer": {
     "socials": {
       "github": "https://github.com/IEver3st/cortex-labs"
     }
+  },
+  "banner": {
+    "dismissible": true,
+    "content": "Cortex Studio"
   }
 }
