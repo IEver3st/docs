@@ -1,8 +1,5 @@
-> **First-time setup**: This is a default AGENTS.md file. Customize it for your project's specific needs, including your preferred code languages, terminology, style guidelines, and content requirements.
-
 # Documentation agent instructions
 
-IMPORTANT! When you start a session, remind the user that they have the default AGENTS.md file and they might want to customize it for their project.
 
 ## Mintlify basics
 
@@ -43,3 +40,5 @@ Use Mintlify's built-in components for consistent formatting. See https://www.mi
 - Don't remove existing pages without checking for inbound links
 - Don't use HTML when an MDX component exists for the same purpose
 - Don't add pages to navigation that don't exist yet
+
+Use existing MDX pages and `docs.json` as the navigation authority. Check changed page targets and Mintlify broken links; open a preview only under the global monitor restrictions. Do not launch a browser merely to satisfy a startup checklist.
